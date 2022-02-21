@@ -31,7 +31,7 @@ health_check() {
                echo -n -e "\rapplication not started"
             else
                 echo "code is $status_code"
-                if [ "$status_code" == "200" ];then
+                if [ "$status_code" == "200" ]; then
                     break
                 fi
             fi
@@ -56,7 +56,7 @@ start_application() {
 stop_application() {
    checkjavapid=`ps -ef | grep java | grep ${APP_NAME} | grep -v grep |grep -v 'deploy.sh'| awk '{print$2}'`
    
-   if [[ ! $checkjavapid ]];then
+   if [[ ! $checkjavapid ]]; then
       echo -e "\rno java process"
       return
    fi
@@ -68,7 +68,7 @@ stop_application() {
         sleep 1
         COSTTIME=$(($times - $e ))
         checkjavapid=`ps -ef | grep java | grep ${APP_NAME} | grep -v grep |grep -v 'deploy.sh'| awk '{print$2}'`
-        if [[ $checkjavapid ]];then
+        if [[ $checkjavapid ]]; then
             kill -9 $checkjavapid
             echo -e  "\r        -- stopping java lasts `expr $COSTTIME` seconds."
         else
